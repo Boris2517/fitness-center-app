@@ -1,6 +1,8 @@
 package com.bora.fitness.controller;
 
+
 import com.bora.fitness.model.Member;
+import com.bora.fitness.model.Trainer;
 import com.bora.fitness.model.dto.UserDTO;
 import com.bora.fitness.service.RegistrationService;
 import org.modelmapper.ModelMapper;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class RegistrationController {
 
     private final RegistrationService registrationService;
-
+    private ModelMapper mp = new ModelMapper();
     public RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
@@ -27,18 +29,20 @@ public class RegistrationController {
 
         Member newMember = registrationService.registerMember(member);
 
-        ModelMapper mp = new ModelMapper();
-
-        UserDTO newUserDto = mp.map(member,UserDTO.class);
+        UserDTO newUserDto = mp.map(newMember,UserDTO.class);
 
         return new ResponseEntity<>(newUserDto, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping
-    private String test(){
-        return "test";
-    }
+    @PostMapping("/trainer")
+    public ResponseEntity<UserDTO> registerTrainer(@RequestBody Trainer trainer){
+        Trainer newTrainer = registrationService.registerTrainer(trainer);
 
+        UserDTO userDTO = mp.map(newTrainer, UserDTO.class);
+
+        return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
+
+    }
 
 
     private Member userDtoToMember(UserDTO userDTO){
