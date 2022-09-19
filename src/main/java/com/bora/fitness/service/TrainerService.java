@@ -2,7 +2,11 @@ package com.bora.fitness.service;
 
 import com.bora.fitness.model.Trainer;
 import com.bora.fitness.repository.TrainerRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TrainerService {
@@ -56,5 +60,11 @@ public class TrainerService {
         }catch(Exception e){
             throw new RuntimeException("Trainer does not exist!");
         }
+    }
+
+    public List<Trainer> getAllTrainers(int page, int limit) {
+        Pageable pageable = PageRequest.of(--page,limit);
+        List<Trainer> trainers = trainerRepository.findAll(pageable).getContent();
+        return trainers;
     }
 }

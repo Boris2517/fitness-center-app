@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("api/v1/trainers")
 public class TrainerController {
@@ -26,6 +29,20 @@ public class TrainerController {
         Trainer newTrainer = trainerService.createTrainer(trainer);
         UserDTO userDTO = mp.map(newTrainer,UserDTO.class);
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDTO>> getTrainers(
+            @RequestParam(value="page",defaultValue = "1") int page,
+            @RequestParam(value="limit",defaultValue = "3") int limit
+    ){
+        List<Trainer> trainers = trainerService.getAllTrainers(page,limit);
+
+        List<UserDTO> userDTOS = trainers.stream()
+                .map(trainer -> mp.map(trainer, UserDTO.class))
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(userDTOS,HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{id}")
