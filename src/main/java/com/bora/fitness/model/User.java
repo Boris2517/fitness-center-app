@@ -35,6 +35,18 @@ public abstract class User {
     public User() {
     }
 
+    public User(Long id, String username, String password, String firstName, String lastName, String phoneNumber, String email, String role, Boolean status) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.role = role;
+        this.status = status;
+    }
+
     public User(Long id, String username, String password, String firstName, String lastName, String phoneNumber, String email, Date birthDate, String role, Boolean status) {
         this.id = id;
         this.username = username;
