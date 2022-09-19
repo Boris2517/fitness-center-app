@@ -18,15 +18,15 @@ public class Hall {
     @Column(name="capacity")
     private int capacity;
 
-    @ManyToOne()
-    @JoinColumn(name="fitness_center_id")
-    @NotNull
-    private FitnessCenter fitnessCenter;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="fitness_center_id")
+//    @NotNull
+//    private FitnessCenter fitnessCenter;
 
     //Terminska lista treninga (koji trening se održava u kom danu i po kojoj ceni
     //- isti trening se može u istim danima održavati u različitim salama, veza
     //N:N), koja sadrži i broj prijavljenih članova za taj termin.
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Appointment> appointmentList;
 }

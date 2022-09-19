@@ -11,11 +11,19 @@ values ('Trening stage', 'Ovo je traning stage.',1);
 
 insert into fitness_center(name, address, phone_number, email)
 values ('FT1','Cara Dusana 1389','036251458','ft1@mail.ru');
+insert into fitness_center(name, address, phone_number, email)
+values ('FT2','Cara Dusana 1389','036251458','ft1@mail.ru');
+insert into fitness_center(name, address, phone_number, email)
+values ('FT3','Cara Dusana 1389','036251458','ft1@mail.ru');
+insert into fitness_center(name, address, phone_number, email)
+values ('FT4','Cara Dusana 1389','036251458','ft1@mail.ru');
 
 
-insert into hall (mark, capacity, fitness_center_id) values ('H1',20,1);
-insert into hall (mark, capacity, fitness_center_id) values ('H2',20,1);
+insert into hall (mark, capacity) values ('H1',20);
+insert into hall (mark, capacity) values ('H2',20);
 
+insert into fitness_center_hall_list(fitness_center_id,hall_list_id) values(1,1);
+insert into fitness_center_hall_list(fitness_center_id,hall_list_id) values(1,2);
 
 insert into training(name, description, duration, training_type_id)
 values ('POWER100','Ovo je trening snage. Tralalala.', 100,1);
