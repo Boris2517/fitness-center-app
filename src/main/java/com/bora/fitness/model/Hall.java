@@ -29,4 +29,50 @@ public class Hall {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Appointment> appointmentList;
+
+    public Hall() {
+    }
+
+    public Hall(String mark, int capacity) {
+        this.mark = mark;
+        this.capacity = capacity;
+    }
+
+    public Hall(Long id, String mark, int capacity) {
+        this.id = id;
+        this.mark = mark;
+        this.capacity = capacity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public List<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
 }

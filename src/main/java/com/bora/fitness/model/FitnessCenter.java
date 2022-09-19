@@ -2,6 +2,8 @@ package com.bora.fitness.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Entity
 public class FitnessCenter {
 
@@ -120,4 +122,13 @@ public class FitnessCenter {
     public void setMemberList(List<Member> memberList) {
         this.memberList = memberList;
     }
+
+    public void addHall(Hall hall){
+        this.hallList.add(hall);
+    }
+
+    public void removeHall(Long hallId){
+        this.hallList = this.hallList.stream().filter(hall -> hall.getId() != hallId).collect(Collectors.toList());
+    }
+
 }
